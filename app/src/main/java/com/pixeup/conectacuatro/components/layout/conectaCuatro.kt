@@ -36,26 +36,25 @@ fun ConectaCuatro(modifier: Modifier) {
                 .fillMaxWidth()
                 .fillMaxHeight(0.65f)
                 .background(Tablero)
-                .border(8.dp, TableroBorder)
-                .padding(10.dp, 60.dp, 10.dp, 60.dp)
+                .border(8.dp,TableroBorder)
+                .padding(10.dp, 50.dp, 10.dp, 50.dp)
                 .constrainAs(boxBlue) {
                 bottom.linkTo(parent.bottom)
             }
         ) {
         Row(
             modifier=Modifier
-                .fillMaxWidth()
-                .background(Color.Transparent),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-
+            .fillMaxWidth()
+            .background(Color.Transparent),
+            horizontalArrangement = Arrangement.SpaceEvenly,
 
             ){
 
         Column(
              modifier = Modifier
-                .fillMaxHeight(),
-                verticalArrangement = Arrangement.SpaceEvenly,
-                horizontalAlignment = Alignment.CenterHorizontally
+             .fillMaxHeight(),
+             verticalArrangement = Arrangement.SpaceEvenly,
+             horizontalAlignment = Alignment.CenterHorizontally
             ){
             Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
             Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
