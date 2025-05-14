@@ -22,6 +22,9 @@ import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.pixeup.conectacuatro.ui.theme.CircleColor
+import com.pixeup.conectacuatro.ui.theme.Tablero
+import com.pixeup.conectacuatro.ui.theme.TableroBorder
 
 @Composable
 fun ConectaCuatro(modifier: Modifier) {
@@ -32,8 +35,8 @@ fun ConectaCuatro(modifier: Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.65f)
-                .background(Color.Blue)
-                .border(8.dp, Color.Cyan)
+                .background(Tablero)
+                .border(8.dp, TableroBorder)
                 .padding(10.dp, 60.dp, 10.dp, 60.dp)
                 .constrainAs(boxBlue) {
                 bottom.linkTo(parent.bottom)
@@ -54,12 +57,12 @@ fun ConectaCuatro(modifier: Modifier) {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
 
         }
         Column(
@@ -68,12 +71,12 @@ fun ConectaCuatro(modifier: Modifier) {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
 
             }
         Column(
@@ -82,12 +85,12 @@ fun ConectaCuatro(modifier: Modifier) {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(Color.LightGray))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black, shape = CircleShape).clip(CircleShape).background(CircleColor))
 
             }
         Column(
@@ -96,12 +99,12 @@ fun ConectaCuatro(modifier: Modifier) {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
 
             }
         Column(
@@ -110,12 +113,12 @@ fun ConectaCuatro(modifier: Modifier) {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
 
             }
         Column(
@@ -124,12 +127,12 @@ fun ConectaCuatro(modifier: Modifier) {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
 
             }
         Column(
@@ -138,12 +141,12 @@ fun ConectaCuatro(modifier: Modifier) {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
-            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(Color.LightGray))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
+            Box(Modifier.height(50.dp).width(50.dp).border(4.dp,Color.Black,shape=CircleShape).clip(CircleShape).background(CircleColor))
 
             }
         }
