@@ -13,4 +13,7 @@ val Pink40 = Color(0xFF7D5260)
 val Tablero = Color(0xFF566ACE)
 val TableroBorder = Color(0xFF00067E)
 val CircleColor = Color(0xFFA4A4A4)
-
+val ButtonColor = Color(0xFF37B8A2)
+val ButtonBorder = Color(0xFF566ACE)
+val RedToken = Color(0xFFFF0004)
+val YellowToken = Color(0xFFFFA600)
