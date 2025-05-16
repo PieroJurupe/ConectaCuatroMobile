@@ -32,19 +32,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension.Companion.preferredWrapContent
 import com.pixeup.conectacuatro.ui.theme.ButtonBorder
 import com.pixeup.conectacuatro.ui.theme.ButtonColor
 import com.pixeup.conectacuatro.ui.theme.CircleColor
 import com.pixeup.conectacuatro.ui.theme.RedToken
+import com.pixeup.conectacuatro.ui.theme.RedTokenex
 import com.pixeup.conectacuatro.ui.theme.Tablero
 import com.pixeup.conectacuatro.ui.theme.TableroBorder
 import com.pixeup.conectacuatro.ui.theme.YellowToken
+import com.pixeup.conectacuatro.ui.theme.YellowTokenex
 
 
 @Composable
@@ -62,8 +68,82 @@ fun ConectaCuatro(modifier: Modifier) {
 
     ConstraintLayout(modifier.fillMaxSize()) {
 
-        val (tableroBox,botonCount,botonGame,textoR,Spacer) = createRefs()
+        val (tableroBox,botonCount,botonGame,textoR,turno,contRed,contYell,token) = createRefs()
         val topGuide = createGuidelineFromTop(20.dp)
+        val juegoActivo = remember { mutableStateOf(true) }
+
+
+        Box(
+            modifier = Modifier
+                .size(80.dp)
+                .clip(CircleShape)
+                .border(4.dp, Color.Black, shape = CircleShape)
+                .constrainAs(token) {
+                    start.linkTo(contRed.end)
+                    end.linkTo(contYell.start)
+                    top.linkTo(contRed.top)
+                    bottom.linkTo(contRed.bottom)
+
+                }
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(80.dp)
+                    .clip(CircleShape)
+                    .background(if (jugadorActual.value == RedToken) RedToken else YellowToken)
+                    .border(10.dp, if(jugadorActual.value == RedToken) RedTokenex else YellowTokenex, shape = CircleShape)
+                    .align(alignment = Alignment.Center)
+            )
+        }
+
+
+        Text(
+            text = "V:0",
+            modifier = Modifier
+                .constrainAs(contRed) {
+                    start.linkTo(parent.start,margin = 24.dp)
+                    bottom.linkTo(tableroBox.top, margin = 120.dp)
+                },
+            fontSize = 40.sp,
+            fontWeight = FontWeight.ExtraBold,
+            color = RedToken
+        )
+        Text(
+            text = "0:V",
+            modifier = Modifier
+                .constrainAs(contYell) {
+                    bottom.linkTo(tableroBox.top, margin = 120.dp)
+                    end.linkTo(parent.end,margin = 24.dp)
+                },
+            fontSize = 40.sp,
+            fontWeight = FontWeight.ExtraBold,
+            color = YellowToken
+        )
+
+        Text(
+            modifier = Modifier
+                .constrainAs(turno)
+                {
+                    bottom.linkTo(tableroBox.top, margin = 10.dp)
+                    end.linkTo(contYell.start)
+                    start.linkTo(contRed.end)
+                },
+            text = buildAnnotatedString {
+                append("!Es turno del \n jugador ")
+                withStyle(
+                    style = SpanStyle(
+                        color = if (jugadorActual.value == RedToken) RedToken else YellowToken,
+                    )
+                ) {
+                    append(if (jugadorActual.value == RedToken) "Rojo!" else "Amarillo!")
+
+                }
+            },
+            fontSize = 31.sp,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.ExtraBold,
+            lineHeight = 34.sp,
+            color = Color.Black )
 
 
         Text(
@@ -101,7 +181,14 @@ fun ConectaCuatro(modifier: Modifier) {
         }
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                for (columna in tablero){
+                    for (fila in columna){
+                        fila.value = CircleColor
+                        juegoActivo.value = true
+                    }
+                }
+            },
             colors = ButtonDefaults.buttonColors(ButtonColor),
             border = BorderStroke (5.dp, ButtonBorder),
             modifier = Modifier
@@ -137,11 +224,29 @@ fun ConectaCuatro(modifier: Modifier) {
                         modifier = Modifier
                             .fillMaxHeight()
                             .clickable {
-                                //println("Columna $columnaId fue seleccionada")
+                                if (!juegoActivo.value) return@clickable
                                 for (fila in (numFilas - 1) downTo 0) {
                                     if (tablero[columnaId][fila].value == CircleColor) {
                                         tablero[columnaId][fila].value = jugadorActual.value
-                                        jugadorActual.value = if (jugadorActual.value == RedToken) YellowToken else RedToken
+                                        val ganador = verificarGanador(
+                                            tablero = tablero,
+                                            fila = fila,
+                                            columna = columnaId,
+                                            color = jugadorActual.value,
+                                            numFilas = numFilas,
+                                            numColumnas = numColumnas
+                                        )
+
+                                        if (ganador) {
+                                            println("¡Ganó el jugador ${if (jugadorActual.value == RedToken) "Rojo" else "Amarillo"}!")
+                                            juegoActivo.value = false
+                                        // ACTUALIZAR ESTADO GANADOR
+                                        } else {
+                                            // CAMBIAR TURNO
+                                            jugadorActual.value = if (jugadorActual.value == RedToken) YellowToken else RedToken
+                                        }
+
+                                       // println("Columna $columnaId fue seleccionada y la fila $fila")
                                         break
                                     }
                                 }
@@ -165,3 +270,56 @@ fun ConectaCuatro(modifier: Modifier) {
             }
         }
     }
+
+
+
+fun verificarGanador(
+    tablero: List<List<MutableState<Color>>>,
+    fila: Int,
+    columna: Int,
+    color: Color,
+    numFilas: Int,
+    numColumnas: Int
+): Boolean {
+    return (
+    cuentaConsecutivos(fila, columna, 1, 0, color, tablero, numFilas, numColumnas) >= 4 || // vertical
+    cuentaConsecutivos(fila, columna, 0, 1, color, tablero, numFilas, numColumnas) >= 4 || // horizontal
+    cuentaConsecutivos(fila, columna, 1, 1, color, tablero, numFilas, numColumnas) >= 4 || // diagonal ↘
+    cuentaConsecutivos(fila, columna, 1, -1, color, tablero, numFilas, numColumnas) >= 4   // diagonal ↙
+    )
+}
+fun cuentaConsecutivos(
+    fila: Int,
+    columna: Int,
+    deltaFila: Int,
+    deltaCol: Int,
+    color: Color,
+    tablero: List<List<MutableState<Color>>>,
+    numFilas: Int,
+    numColumnas: Int
+): Int {
+    var total = 1
+    total += contarEnDireccion(fila, columna, deltaFila, deltaCol, color, tablero, numFilas, numColumnas)
+    total += contarEnDireccion(fila, columna, -deltaFila, -deltaCol, color, tablero, numFilas, numColumnas)
+    return total
+}
+fun contarEnDireccion(
+    fila: Int,
+    columna: Int,
+    deltaFila: Int,
+    deltaCol: Int,
+    color: Color,
+    tablero: List<List<MutableState<Color>>>,
+    numFilas: Int,
+    numColumnas: Int
+): Int {
+    var count = 0
+    var f = fila + deltaFila
+    var c = columna + deltaCol
+    while (f in 0 until numFilas && c in 0 until numColumnas && tablero[c][f].value == color) {
+        count++
+        f += deltaFila
+        c += deltaCol
+    }
+    return count
+}
