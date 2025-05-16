@@ -24,6 +24,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -71,6 +72,10 @@ fun ConectaCuatro(modifier: Modifier) {
         val (tableroBox,botonCount,botonGame,textoR,turno,contRed,contYell,token) = createRefs()
         val topGuide = createGuidelineFromTop(20.dp)
         val juegoActivo = remember { mutableStateOf(true) }
+        val pRed = remember { mutableStateOf(0) }
+        val pYell = remember { mutableStateOf(0) }
+        val mensajeJuego = remember { mutableStateOf("") }
+
 
 
         Box(
@@ -98,7 +103,7 @@ fun ConectaCuatro(modifier: Modifier) {
 
 
         Text(
-            text = "V:0",
+            text = "V:${pRed.value}",
             modifier = Modifier
                 .constrainAs(contRed) {
                     start.linkTo(parent.start,margin = 24.dp)
@@ -109,7 +114,7 @@ fun ConectaCuatro(modifier: Modifier) {
             color = RedToken
         )
         Text(
-            text = "0:V",
+            text = "${pYell.value}:V",
             modifier = Modifier
                 .constrainAs(contYell) {
                     bottom.linkTo(tableroBox.top, margin = 120.dp)
@@ -128,16 +133,29 @@ fun ConectaCuatro(modifier: Modifier) {
                     end.linkTo(contYell.start)
                     start.linkTo(contRed.end)
                 },
-            text = buildAnnotatedString {
-                append("!Es turno del \n jugador ")
-                withStyle(
-                    style = SpanStyle(
-                        color = if (jugadorActual.value == RedToken) RedToken else YellowToken,
-                    )
-                ) {
-                    append(if (jugadorActual.value == RedToken) "Rojo!" else "Amarillo!")
-
-                }
+                text = buildAnnotatedString {
+                    val mensaje = mensajeJuego.value
+                    val partes = mensaje.split("Rojo", "Amarillo")
+                    val colorRojo = RedToken
+                    val colorAmarillo = YellowToken
+                    if (mensaje.contains("Rojo")) {
+                        append(partes[0])
+                        withStyle(SpanStyle(color = colorRojo)) {
+                            append("Rojo")
+                        }
+                        append(partes.getOrElse(1) { "" })
+                    } else if (mensaje.contains("Amarillo")) {
+                        append(partes[0])
+                        withStyle(SpanStyle(color = colorAmarillo)) {
+                            append("Amarillo")
+                        }
+                        append(partes.getOrElse(1) { "" })
+                    } else {
+                        append("!Es el turno del \n jugador! ")
+                        withStyle(SpanStyle(color = if (jugadorActual.value == RedToken) colorRojo else colorAmarillo)) {
+                            append(if (jugadorActual.value == RedToken) "Rojo" else "Amarillo")
+                        }
+                    }
             },
             fontSize = 31.sp,
             textAlign = TextAlign.Center,
@@ -165,7 +183,10 @@ fun ConectaCuatro(modifier: Modifier) {
         )
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                pRed.value= 0
+                pYell.value= 0
+                      },
             colors = ButtonDefaults.buttonColors(ButtonColor),
             border = BorderStroke (5.dp, ButtonBorder),
             //LA PALABRA CONTADOR ES DEMASIADO GRANDE A COMPARACION DE PARTIDA POR ESO SE CAMBIA EL VALOR DE PADDING DEL BUTON
@@ -238,10 +259,23 @@ fun ConectaCuatro(modifier: Modifier) {
                                         )
 
                                         if (ganador) {
-                                            println("¡Ganó el jugador ${if (jugadorActual.value == RedToken) "Rojo" else "Amarillo"}!")
-                                            juegoActivo.value = false
-                                        // ACTUALIZAR ESTADO GANADOR
-                                        } else {
+                                            //print("¡Ganó el jugador ${if (jugadorActual.value == RedToken) "Rojo" else "Amarillo"}!")
+                                            val ganadorColor = if (jugadorActual.value == RedToken) "Rojo" else "Amarillo"
+                                            mensajeJuego.value = "¡Ganó el jugador $ganadorColor!"
+                                            val turnoColor =
+                                                if (jugadorActual.value == RedToken) "Rojo" else "Amarillo"
+                                            mensajeJuego.value =
+                                                "!Gano el \n jugador $turnoColor!"
+                                            //print(mensajeJuego)
+                                                if (jugadorActual.value == RedToken) {
+                                                pRed.value += 1
+                                                } else {
+                                                pYell.value += 1
+                                                }
+                                                juegoActivo.value = false
+
+                                            // ACTUALIZAR ESTADO GANADOR
+                                             } else {
                                             // CAMBIAR TURNO
                                             jugadorActual.value = if (jugadorActual.value == RedToken) YellowToken else RedToken
                                         }
