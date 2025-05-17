@@ -1,5 +1,5 @@
 ![Image](https://github.com/user-attachments/assets/1623a314-ccc8-4c89-b348-16252decd98f)
-#  ![wilson](https://github.com/user-attachments/assets/66d4543c-a131-4a61-859c-edc367de3a64) Conecta4
+#  ![wilson](https://github.com/user-attachments/assets/66d4543c-a131-4a61-859c-edc367de3a64) Conecta 4
 > Aplicación sencilla del clasico juego conecta 4 hecha con JetpackCompose y material3 en AndroidStudio.
 > Interfaz simple con todas las funcionalidades y comodidades para jugar.
 >
